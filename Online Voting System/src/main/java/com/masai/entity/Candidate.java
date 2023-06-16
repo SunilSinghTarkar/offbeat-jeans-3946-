@@ -1,18 +1,21 @@
 package com.masai.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Candidate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long candidateId;
-	@ManyToOne
-	private Election election;
+	@ManyToMany(mappedBy = "Candidate")
+	private Set<Election> election;
 	private String candidateName;
 	private String partyName;
 	private String agenda;
@@ -23,7 +26,8 @@ public class Candidate {
 		
 	}
 
-	public Candidate(Election election, String candidateName, String partyName, String agenda, String background) {
+	public Candidate(HashSet<Election> election, String candidateName, String partyName, String agenda,
+			String background) {
 		super();
 		this.election = election;
 		this.candidateName = candidateName;
@@ -32,15 +36,15 @@ public class Candidate {
 		this.background = background;
 	}
 
+
 	public long getCandidateId() {
 		return candidateId;
 	}
-
-	public Election getElection() {
+	public Set<Election> getElection() {
 		return election;
 	}
 
-	public void setElection(Election election) {
+	public void setElection(Set<Election> election) {
 		this.election = election;
 	}
 

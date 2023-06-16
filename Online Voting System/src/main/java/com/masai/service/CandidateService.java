@@ -5,6 +5,6 @@ import com.masai.exception.SomeThingWentWrongException;
 
 public interface CandidateService {
 	
- void addCandidate(Candidate candidate)throws SomeThingWentWrongException;
+  public void addCandidate(Candidate candidate)throws SomeThingWentWrongException;
 	 
 }
